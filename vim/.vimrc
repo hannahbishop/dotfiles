@@ -42,9 +42,14 @@ inoremap jk <esc>
 " toggle gundo
 nnoremap <leader>u :GundoToggle<CR>
 " save session
-nnoremap <leader>s :mksession<CR>
-" open ag.vim
-nnoremap <leader>a :Ag
+" nnoremap <leader>s :mksession<CR>
+" ack
+nnoremap <leader>a :Ack!<Space>
+" fuzzy finder remaps
+nnoremap <leader>e :call FzyCommand("find . -type f", ":e")<cr>
+nnoremap <leader>v :call FzyCommand("find . -type f", ":vs")<cr>
+nnoremap <leader>s :call FzyCommand("find . -type f", ":sp")<cr>
+
 " }}}
 " Movement {{{
 " move to beginning/end of line
@@ -55,29 +60,15 @@ nnoremap E $
 nnoremap $ <nop>
 nnoremap ^ <nop>
 " }}}
-" AutoGroups {{{
-augroup configgroup
-    autocmd!
-    autocmd VimEnter * highlight clear SignColumn
-    autocmd BufWritePre *.php,*.py,*.js,*.txt,*.hs,*.java,*.md,*.rb :call <SID>StripTrailingWhitespaces()
-    autocmd BufEnter *.cls setlocal filetype=java
-    autocmd BufEnter *.zsh-theme setlocal filetype=zsh
-    autocmd BufEnter Makefile setlocal noexpandtab
-    autocmd BufEnter *.sh setlocal tabstop=2
-    autocmd BufEnter *.sh setlocal shiftwidth=2
-    autocmd BufEnter *.sh setlocal softtabstop=2
-    autocmd BufEnter *.py setlocal tabstop=4
-    autocmd BufEnter *.md setlocal ft=markdown
-    autocmd BufEnter *.go setlocal noexpandtab
-    autocmd BufEnter *.avsc setlocal ft=json
-augroup END
-" }}}
 " Vim Plug {{{
 call plug#begin('~/.vim/plugged')
 Plug 'bling/vim-airline'
 Plug 'janko-m/vim-test'
 Plug 'simnalamburt/vim-mundo'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'mileszs/ack.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 call plug#end()
 " }}}
 " airline {{{ set laststatus=2
@@ -88,3 +79,18 @@ let g:airline_right_sep = ''
 let g:airline_right_sep = ''
 " }}}
 " vim:foldmethod=marker:foldlevel=0
+
+function! FzyCommand(choice_command, vim_command)
+    try
+            let output = system(a:choice_command . " | fzy ")
+    catch /Vim:Interrupt/
+            " Swallow errors from ^C, alow redraw! below
+    endtry
+    redraw!
+    if v:shell_error == 0 && !empty(output)
+            exec a:vim_command . ' ' . output
+    endif
+endfunction
+
+let g:ackprg = 'ag --nogroup --column --ignore-case'
+
