@@ -1,4 +1,4 @@
-alias gco='git branch | cut -c 3- | fzy | xargs git checkout'
+alias gcof='git branch | cut -c 3- | fzy | xargs git checkout'
 alias gco-='git checkout -'
 alias gfixup='findsha | xargs git commit --fixup'
 
