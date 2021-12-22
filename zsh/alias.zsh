@@ -15,3 +15,6 @@ gch()
         MESSAGE=$(printf "[%s] - %s" $(grep -o "SXM-[0-9]*" <<< $(git rev-parse --abbrev-ref HEAD)) $1)
         git commit -m $MESSAGE 
 };
+
+# Stolen pretty git graph stuff from stack overflow
+alias glg="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"

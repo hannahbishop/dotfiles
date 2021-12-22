@@ -1,6 +1,17 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# Android SDK Environment Variables
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/hannahbishop/.oh-my-zsh"
 
@@ -85,6 +96,8 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
 
 # Rebind Ctrl-O to accept AND execute the autosuggestion
 bindkey '^O' autosuggest-execute
+# Use vim keybindings in terminal, instead of the default emacs bindings
+bindkey -v
 
 # End of plugin configuration 
 
@@ -124,3 +137,4 @@ function chpwd() {
 # Set up zsh-syntax-highlighting - must be at end of file
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
