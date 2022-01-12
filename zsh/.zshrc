@@ -13,13 +13,13 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/hannahbishop/.oh-my-zsh"
+export ZSH="/Users/hbishop/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -83,6 +83,7 @@ plugins=(
     git
     zsh-autosuggestions
     zsh-completions
+    zsh-syntax-highlighting
 )
 
 # Plugin configuration
@@ -133,8 +134,5 @@ function chpwd() {
     emulate -L zsh
     ls -a
 }
-
-# Set up zsh-syntax-highlighting - must be at end of file
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
