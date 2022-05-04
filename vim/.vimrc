@@ -1,7 +1,7 @@
 " Adapted from Douglas Black
 " Colors {{{
 syntax enable           " enable syntax processing
-colorscheme badwolf
+colorscheme jellybeans
 set termguicolors
 " }}}
 " Spaces & Tabs {{{
@@ -59,17 +59,6 @@ nnoremap E $
 " $/^ doesn't do anything
 nnoremap $ <nop>
 nnoremap ^ <nop>
-" }}}
-" Vim Plug {{{
-call plug#begin('~/.vim/plugged')
-Plug 'bling/vim-airline'
-Plug 'janko-m/vim-test'
-Plug 'simnalamburt/vim-mundo'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'mileszs/ack.vim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-call plug#end()
 " }}}
 " airline {{{ set laststatus=2
 let g:airline_theme = 'zenburn'

@@ -2,6 +2,18 @@ alias gcof='git branch | cut -c 3- | fzy | xargs git checkout'
 alias gco-='git checkout -'
 alias gfixup='findsha | xargs git commit --fixup'
 
+# Ultralist aliases
+alias u='ultralist'
+alias up='ultralist l group:project'
+alias uf='ultralist l | fzy'
+alias uc='ultralist complete'
+alias uac='ultralist ar c | clear | up'
+
+uad()
+{
+    ultralist a $@ | clear | up
+};
+
 findsha()
 {
   git log --oneline | fzy | cut -c -9 
