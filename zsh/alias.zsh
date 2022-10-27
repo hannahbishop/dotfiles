@@ -24,7 +24,7 @@ findsha()
 # gch // Git Commit Hers
 gch()
 {
-        MESSAGE=$(printf "[%s] - %s" $(grep -o "SXM-[0-9]*" <<< $(git rev-parse --abbrev-ref HEAD)) $1)
+        MESSAGE=$(printf "[%s] - %s" $(grep -o "DX-[0-9]*" <<< $(git rev-parse --abbrev-ref HEAD)) $1)
         git commit -m $MESSAGE 
 };
 

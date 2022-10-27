@@ -69,6 +69,18 @@ let g:airline_right_sep = ''
 " }}}
 " vim:foldmethod=marker:foldlevel=0
 
+" Automatically install vimp l u gin manager
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+    silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" Now list all the plugins I want
+call plug#begin()
+    Plug 'michaeljsmith/vim-indent-object'
+call plug#end()
+
 function! FzyCommand(choice_command, vim_command)
     try
             let output = system(a:choice_command . " | fzy ")
